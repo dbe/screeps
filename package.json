@@ -1,0 +1,12 @@
+{
+  "name": "screeps",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "dbe <davidbrianethier@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "grunt": "^1.0.2",
+    "grunt-screeps": "^1.4.0"
+  }
+}
