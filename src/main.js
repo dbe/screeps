@@ -1,7 +1,7 @@
 const uuidv1 = require('uuid/v1');
 
 var roleMap = {
-  'collector': require('./role.collector.js'),
+  'harvester': require('./role.harvester.js'),
   'mainFueler': require('./role.mainFueler.js'),
   'builder': require('./role.builder.js')
 };
@@ -87,13 +87,13 @@ function getMainSpawn () {
 
 const MAIN_FUELER = {
   name: 'mainFueler',
-  roles: ['collector', 'mainFueler'],
+  roles: ['harvester', 'mainFueler'],
   body: [WORK, CARRY, MOVE]
 };
 
 const BUILDER = {
   name: 'builder',
-  roles: ['builder', 'collector', 'mainFueler'],
+  roles: ['builder', 'harvester', 'mainFueler'],
   body: [WORK, CARRY, MOVE]
 };
 
@@ -106,14 +106,3 @@ const REQUIRED_CREEPS = {
   'mainFueler': 2,
   'builder': 1
 };
-
-// Game.spawns['Spawn1'].spawnCreep([WORK, CARRY, MOVE], 'MainFueler1', {
-//     memory: {
-//     name: 'mainFueler',
-//     prototype: {
-//       roles: ['collector', 'mainFueler'],
-//       body: [WORK, CARRY, MOVE]
-//     },
-//     count: 2
-//   }
-// });
