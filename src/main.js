@@ -1,9 +1,9 @@
 const uuidv1 = require('uuid/v1');
 
 var roleMap = {
-  'collector': require('role.collector'),
-  'mainFueler': require('role.mainFueler'),
-  'builder': require('role.builder')
+  'collector': require('./role.collector.js'),
+  'mainFueler': require('./role.mainFueler.js'),
+  'builder': require('./role.builder.js')
 };
 
 module.exports.loop = function () {

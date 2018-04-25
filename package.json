@@ -20,5 +20,11 @@
       "FIND_CONSTRUCTION_SITES",
       "ERR_NOT_IN_RANGE"
     ]
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "devDependencies": {
+    "webpack-cli": "^2.0.15"
   }
 }
