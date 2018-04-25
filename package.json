@@ -18,6 +18,7 @@
       "CARRY",
       "MOVE",
       "FIND_CONSTRUCTION_SITES",
+      "FIND_SOURCES",
       "ERR_NOT_IN_RANGE"
     ]
   },

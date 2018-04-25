@@ -6,17 +6,26 @@ var roleMap = {
   'builder': require('./role.builder.js')
 };
 
-module.exports.loop = function () {
-  spawnNewCreeps();
+const MAIN_FUELER = {
+  name: 'mainFueler',
+  roles: ['harvester', 'mainFueler'],
+  body: [WORK, CARRY, MOVE]
+};
 
-  forEachCreep(function (creep) {
-    creep.memory.roles.some(function (role) {
-      console.log('Performing role: ', role);
+const BUILDER = {
+  name: 'builder',
+  roles: ['builder', 'harvester', 'mainFueler'],
+  body: [WORK, CARRY, MOVE]
+};
 
-      // Will break if the role returned true
-      return roleMap[role].run(creep);
-    });
-  });
+const CREEP_PROTOTYPES = {
+  'mainFueler': MAIN_FUELER,
+  'builder': BUILDER
+};
+
+const REQUIRED_CREEPS = {
+  'mainFueler': 2,
+  'builder': 1
 };
 
 function forEachCreep (fn) {
@@ -85,24 +94,16 @@ function getMainSpawn () {
   return Game.spawns[Object.keys(Game.spawns)[0]];
 }
 
-const MAIN_FUELER = {
-  name: 'mainFueler',
-  roles: ['harvester', 'mainFueler'],
-  body: [WORK, CARRY, MOVE]
-};
+// module.exports.loop = function () {
+(function () {
+  spawnNewCreeps();
 
-const BUILDER = {
-  name: 'builder',
-  roles: ['builder', 'harvester', 'mainFueler'],
-  body: [WORK, CARRY, MOVE]
-};
+  forEachCreep(function (creep) {
+    creep.memory.roles.some(function (role) {
+      console.log('Performing role: ', role);
 
-const CREEP_PROTOTYPES = {
-  'mainFueler': MAIN_FUELER,
-  'builder': BUILDER
-};
-
-const REQUIRED_CREEPS = {
-  'mainFueler': 2,
-  'builder': 1
-};
+      // Will break if the role returned true
+      return roleMap[role].run(creep);
+    });
+  });
+})();
