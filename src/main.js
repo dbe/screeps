@@ -3,12 +3,13 @@ const uuidv1 = require('uuid/v1');
 var roleMap = {
   'harvester': require('./role.harvester.js'),
   'mainFueler': require('./role.mainFueler.js'),
-  'builder': require('./role.builder.js')
+  'builder': require('./role.builder.js'),
+  'upgrader': require('./role.upgrader.js')
 };
 
 const MAIN_FUELER = {
   name: 'mainFueler',
-  roles: ['harvester', 'mainFueler'],
+  roles: ['harvester', 'mainFueler', 'upgrader'],
   body: [WORK, CARRY, MOVE]
 };
 

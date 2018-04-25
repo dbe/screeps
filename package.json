@@ -20,7 +20,10 @@
       "MOVE",
       "FIND_CONSTRUCTION_SITES",
       "FIND_SOURCES",
-      "ERR_NOT_IN_RANGE"
+      "FIND_STRUCTURES",
+      "ERR_NOT_IN_RANGE",
+      "STRUCTURE_SPAWN",
+      "RESOURCE_ENERGY"
     ]
   },
   "scripts": {
