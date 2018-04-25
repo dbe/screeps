@@ -1,4 +1,4 @@
-var role = {
+module.exports = {
   run: function(creep) {
     if(creep.carry.energy < creep.carryCapacity) {
       var source = creep.room.find(FIND_SOURCES)[0];
@@ -12,5 +12,3 @@ var role = {
     }
   }
 }
-
-module.exports = role;

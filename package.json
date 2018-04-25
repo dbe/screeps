@@ -8,5 +8,15 @@
   "dependencies": {
     "grunt": "^1.0.2",
     "grunt-screeps": "^1.4.0"
+  },
+  "semistandard": {
+    "globals": [
+      "Game",
+      "WORK",
+      "CARRY",
+      "MOVE",
+      "FIND_CONSTRUCTION_SITES",
+      "ERR_NOT_IN_RANGE"
+    ]
   }
 }
