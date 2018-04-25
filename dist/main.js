@@ -1,3 +1,5 @@
+const uuidv1 = require('uuid/v1');
+
 var roleMap = {
   'collector': require('role.collector'),
   'mainFueler': require('role.mainFueler'),
@@ -76,7 +78,7 @@ function spawnCreep (name) {
     name: creep.name
   };
 
-  spawn.spawnCreep(creep.body, creep.name, {memory: memory});
+  spawn.spawnCreep(creep.body, `${creep.name}_${uuidv1()}`, {memory: memory});
 }
 
 function getMainSpawn () {
