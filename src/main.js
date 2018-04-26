@@ -1,3 +1,5 @@
+var Factory = require('./factory.js');
+
 function main () {
   var roleMap = {
     'harvester': require('./role.harvester.js'),
@@ -24,8 +26,8 @@ function main () {
   };
 
   const REQUIRED_CREEPS = {
-    'mainFueler': 2,
-    'builder': 1
+    'mainFueler': 5,
+    'builder': 2
   };
 
   function forEachCreep (fn) {
