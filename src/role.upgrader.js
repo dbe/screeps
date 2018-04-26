@@ -9,9 +9,8 @@ module.exports = {
     }
 
     if (creep.memory.upgrading) {
-      var controller = Room.controller;
-      if (creep.upgrade(controller) === ERR_NOT_IN_RANGE) {
-        creep.moveTo(controller, {visualizePathStyle: {stroke: '#ffaa00'}});
+      if (creep.upgradeController(creep.room.controller) === ERR_NOT_IN_RANGE) {
+        creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffaa00'}});
       }
       return true;
     } else {
