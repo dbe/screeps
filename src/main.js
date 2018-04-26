@@ -1,5 +1,3 @@
-const uuidv1 = require('uuid/v1');
-
 var roleMap = {
   'harvester': require('./role.harvester.js'),
   'mainFueler': require('./role.mainFueler.js'),
@@ -35,15 +33,6 @@ function forEachCreep (fn) {
   }
 }
 
-function spawnNewCreeps () {
-  var neededCreeps = getNeededCreeps();
-  console.log('Needed creeps: ', neededCreeps);
-
-  for (var name in neededCreeps) {
-    spawnCreep(name);
-  }
-}
-
 function getNeededCreeps () {
   var currentCreeps = getCurrentCreeps();
   console.log('Current Creeps: ', currentCreeps);
@@ -59,6 +48,15 @@ function getNeededCreeps () {
   }
 
   return neededCreeps;
+}
+
+function spawnNewCreeps () {
+  var neededCreeps = getNeededCreeps();
+  console.log('Needed creeps: ', neededCreeps);
+
+  for (var name in neededCreeps) {
+    spawnCreep(name);
+  }
 }
 
 function getCurrentCreeps () {
@@ -88,15 +86,24 @@ function spawnCreep (name) {
     name: creep.name
   };
 
-  spawn.spawnCreep(creep.body, `${creep.name}_${uuidv1()}`, {memory: memory});
+  spawn.spawnCreep(creep.body, `${creep.name}_${guid()}`, {memory: memory});
+}
+
+// https://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
+function guid () {
+  function s4 () {
+    return Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+  }
+  return s4() + s4() + '-' + s4() + '-' + s4() + '-' + s4() + '-' + s4() + s4() + s4();
 }
 
 function getMainSpawn () {
   return Game.spawns[Object.keys(Game.spawns)[0]];
 }
 
-// module.exports.loop = function () {
-(function () {
+module.exports.loop = function () {
   spawnNewCreeps();
 
   forEachCreep(function (creep) {
@@ -107,4 +114,4 @@ function getMainSpawn () {
       return roleMap[role].run(creep);
     });
   });
-})();
+};
