@@ -12,6 +12,7 @@
   },
   "semistandard": {
     "globals": [
+      "_",
       "Game",
       "Room",
       "WORK",
@@ -21,6 +22,7 @@
       "FIND_SOURCES",
       "FIND_STRUCTURES",
       "ERR_NOT_IN_RANGE",
+      "STRUCTURE_CONTAINER",
       "STRUCTURE_SPAWN",
       "RESOURCE_ENERGY"
     ]

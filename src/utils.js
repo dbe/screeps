@@ -1,7 +1,15 @@
-function findSpawnWithCapacity (room) {
+function findSpawnsWithCapacity (room) {
   return room.find(FIND_STRUCTURES, {
     filter: (structure) => {
       return (structure.structureType === STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+    }
+  });
+}
+
+function findContainersWithCapacity (room) {
+  return room.find(FIND_STRUCTURES, {
+    filter: (structure) => {
+      return (structure.structureType === STRUCTURE_CONTAINER) && structure.store[RESOURCE_ENERGY] < structure.storeCapacity;
     }
   });
 }
@@ -27,7 +35,8 @@ function guid () {
 }
 
 export {
-  findSpawnWithCapacity,
+  findSpawnsWithCapacity,
+  findContainersWithCapacity,
   forEachCreep,
   getMainSpawn,
   guid
