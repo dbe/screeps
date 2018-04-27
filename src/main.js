@@ -58,22 +58,6 @@ let loop = (function () {
     }
   }
 
-  function getCurrentCreeps () {
-    var currentCreeps = {};
-
-    forEachCreep(function (creep) {
-      var name = creep.memory.name;
-
-      if (currentCreeps[name] === undefined) {
-        currentCreeps[name] = 0;
-      }
-
-      currentCreeps[name]++;
-    });
-
-    return currentCreeps;
-  }
-
   function spawnCreep (name) {
     var creep = CREEP_PROTOTYPES[name];
     console.log('Spawning: ', creep.name);

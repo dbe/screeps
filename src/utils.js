@@ -4,4 +4,6 @@ function forEachCreep (fn) {
   }
 }
 
-export { forEachCreep };
+export {
+  forEachCreep
+};
