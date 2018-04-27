@@ -1,3 +1,11 @@
+function findSpawnWithCapacity (room) {
+  return room.find(FIND_STRUCTURES, {
+    filter: (structure) => {
+      return (structure.structureType === STRUCTURE_SPAWN) && structure.energy < structure.energyCapacity;
+    }
+  });
+}
+
 function forEachCreep (fn) {
   for (var name in Game.creeps) {
     fn(Game.creeps[name]);
@@ -19,6 +27,7 @@ function guid () {
 }
 
 export {
+  findSpawnWithCapacity,
   forEachCreep,
   getMainSpawn,
   guid
