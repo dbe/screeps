@@ -6,6 +6,7 @@ let roleMap = {
   'harvester': require('./role.harvester.js'),
   'leecher': require('./role.leecher.js'),
   'supplier': require('./role.supplier.js'),
+  'repairer': require('./role.repairer.js'),
   'upgrader': require('./role.upgrader.js')
 };
 

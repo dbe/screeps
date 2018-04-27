@@ -19,7 +19,9 @@ module.exports = {
 function setMemory (creep) {
   if (creep.carry.energy === 0) {
     creep.memory.building = false;
+    creep.say('Done building');
   } else if (creep.carry.energy === creep.carryCapacity) {
     creep.memory.building = true;
+    creep.say('Time to build!');
   }
 }

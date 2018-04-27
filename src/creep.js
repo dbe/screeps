@@ -13,6 +13,12 @@ class Creep {
     }
   }
 
+  static repair (creep, target) {
+    if (creep.repair(target) === ERR_NOT_IN_RANGE) {
+      creep.moveTo(target);
+    }
+  }
+
   static upgrade (creep) {
     if (creep.upgradeController(creep.room.controller) === ERR_NOT_IN_RANGE) {
       creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffaa00'}});
