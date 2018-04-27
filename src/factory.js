@@ -21,16 +21,7 @@ class Factory {
   static spawnNextCreep () {
     let current = getCurrentCreeps();
     BUILD_ORDER.some((species) => {
-      console.log('Investigating species in build order: ', species);
-      console.log('current: ', JSON.stringify(current));
-      let oreo = current.dec(species);
-      console.log('oreo: ', oreo);
-
-      if (oreo < 0) {
-        console.log('current: ', JSON.stringify(current));
-        console.log('current.dec(species) was less than 0 for species: ', species);
-        console.log('PROTOTYPE_MAP: ', JSON.stringify(PROTOTYPE_MAP));
-        console.log('PROTOTYPE_MAP[species]: ', PROTOTYPE_MAP[species]);
+      if (current.dec(species) < 0) {
         PROTOTYPE_MAP[species].spawn();
         return true;
       }
