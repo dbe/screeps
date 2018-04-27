@@ -44,4 +44,4 @@ function getCurrentCreeps () {
   return countMap;
 }
 
-module.exports = Factory;
+export default Factory;
