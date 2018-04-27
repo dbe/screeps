@@ -1,6 +1,8 @@
-var Factory = require('./factory.js');
+import { forEachCreep } from './utils.js';
 
-function main () {
+// var Factory = require('./factory.js');
+
+let loop = (function () {
   var roleMap = {
     'harvester': require('./role.harvester.js'),
     'mainFueler': require('./role.mainFueler.js'),
@@ -29,12 +31,6 @@ function main () {
     'mainFueler': 5,
     'builder': 2
   };
-
-  function forEachCreep (fn) {
-    for (var name in Game.creeps) {
-      fn(Game.creeps[name]);
-    }
-  }
 
   function getNeededCreeps () {
     var currentCreeps = getCurrentCreeps();
@@ -118,6 +114,7 @@ function main () {
       });
     });
   };
-}
+})();
 
-module.exports.loop = main();
+// module.exports.loop = main();
+export { loop };
