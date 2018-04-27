@@ -2,18 +2,21 @@ import CountMap from './countMap.js';
 import CreepPrototype from './creepPrototype.js';
 import { forEachCreep } from './utils.js';
 
-const SUPPLIER = 'supplier';
 const BUILDER = 'builder';
+const HARVESTER = 'harvester';
+const SUPPLIER = 'supplier';
 const UPGRADER = 'upgrader';
 
 const PROTOTYPE_MAP = {};
-PROTOTYPE_MAP[SUPPLIER] = new CreepPrototype('supplier', [WORK, CARRY, MOVE], ['harvester', 'supplier']);
-PROTOTYPE_MAP[BUILDER] = new CreepPrototype('builder', [WORK, CARRY, MOVE], ['builder', 'harvester', 'supplier']);
-PROTOTYPE_MAP[UPGRADER] = new CreepPrototype('upgrader', [WORK, CARRY, MOVE], ['upgrader', 'harvester', 'supplier']);
+PROTOTYPE_MAP[BUILDER] = new CreepPrototype(BUILDER, [WORK, CARRY, MOVE], ['builder', 'harvester', 'supplier']);
+PROTOTYPE_MAP[HARVESTER] = new CreepPrototype(HARVESTER, [WORK, WORK, MOVE, MOVE], ['harvester']);
+PROTOTYPE_MAP[SUPPLIER] = new CreepPrototype(SUPPLIER, [WORK, WORK, CARRY, MOVE], ['harvester', 'supplier']);
+PROTOTYPE_MAP[UPGRADER] = new CreepPrototype(UPGRADER, [CARRY, CARRY, MOVE, MOVE, WORK], ['upgrader', 'leecher']);
 
 const BUILD_ORDER = [
-  SUPPLIER,
   BUILDER,
+  // HARVESTER,
+  SUPPLIER,
   UPGRADER
 ];
 

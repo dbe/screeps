@@ -2,9 +2,10 @@ import { forEachCreep } from './utils.js';
 import Factory from './factory.js';
 
 let roleMap = {
-  'harvester': require('./role.harvester.js'),
-  'supplier': require('./role.supplier.js'),
   'builder': require('./role.builder.js'),
+  'harvester': require('./role.harvester.js'),
+  'leecher': require('./role.leecher.js'),
+  'supplier': require('./role.supplier.js'),
   'upgrader': require('./role.upgrader.js')
 };
 

@@ -12,6 +12,18 @@ class Creep {
       creep.drop(resource);
     }
   }
+
+  static upgrade (creep) {
+    if (creep.upgradeController(creep.room.controller) === ERR_NOT_IN_RANGE) {
+      creep.moveTo(creep.room.controller, {visualizePathStyle: {stroke: '#ffaa00'}});
+    }
+  }
+
+  static withdraw (creep, container, resource) {
+    if (creep.withdraw(container, resource) === ERR_NOT_IN_RANGE) {
+      creep.moveTo(container);
+    }
+  }
 }
 
 export default Creep;
