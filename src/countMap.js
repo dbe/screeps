@@ -18,7 +18,7 @@ class CountMap {
       this.map[key] = 0;
     }
 
-    return this.map[key]++;
+    return ++this.map[key];
   }
 
   dec (key) {
@@ -26,7 +26,7 @@ class CountMap {
       this.map[key] = 0;
     }
 
-    return this.map[key]--;
+    return --this.map[key];
   }
 }
 
