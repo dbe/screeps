@@ -1,25 +1,31 @@
-module.exports = function(grunt) {
+const PRIVATE_SERVER_OPTIONS = {
+  host: '10.0.1.16',
+  port: 21025,
+  http: true
+};
 
-  var config = require('./.screeps.json')
+module.exports = function (grunt) {
+  var config = require('./.screeps.json');
   var branch = grunt.option('branch') || config.branch;
   var email = grunt.option('email') || config.email;
   var password = grunt.option('password') || config.password;
-  var ptr = grunt.option('ptr') ? true : config.ptr
+  var ptr = grunt.option('ptr') ? true : config.ptr;
+
+  var options = {
+    email: email,
+    password: password,
+    branch: branch,
+    ptr: ptr
+  };
+
+  if (grunt.option('private')) {
+    options['server'] = PRIVATE_SERVER_OPTIONS;
+  }
 
   grunt.loadNpmTasks('grunt-screeps');
   grunt.initConfig({
     screeps: {
-      options: {
-        server: {
-          host: '10.0.1.16',
-          port: 21025,
-          http: true
-        },
-        email: email,
-        password: password,
-        branch: branch,
-        ptr: ptr
-      },
+      options: options,
       dist: {
         files: [
           {
@@ -32,4 +38,4 @@ module.exports = function(grunt) {
       }
     }
   });
-}
+};

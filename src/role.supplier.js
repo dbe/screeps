@@ -1,8 +1,14 @@
 import Creep from './Creep';
-import { findContainersWithCapacity, findSpawnsWithCapacity } from './utils';
+import { findContainersWithCapacity, findExtensionsWithCapacity, findSpawnsWithCapacity } from './utils';
 
 function run (creep) {
   let targets = findSpawnsWithCapacity(creep.room);
+  if (targets.length > 0) {
+    Creep.transfer(creep, targets[0], RESOURCE_ENERGY);
+    return true;
+  }
+
+  targets = findExtensionsWithCapacity(creep.room);
   if (targets.length > 0) {
     Creep.transfer(creep, targets[0], RESOURCE_ENERGY);
     return true;

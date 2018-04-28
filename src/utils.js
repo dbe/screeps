@@ -22,6 +22,14 @@ function findContainersWithEnergy (room, amount) {
   });
 }
 
+function findExtensionsWithCapacity (room) {
+  return room.find(FIND_STRUCTURES, {
+    filter: (structure) => {
+      return (structure.structureType === STRUCTURE_EXTENSION) && structure.energy < structure.energyCapacity;
+    }
+  });
+}
+
 function findRepairableStructures (room) {
   const targets = room.find(FIND_STRUCTURES, {
     filter: object => object.hits < object.hitsMax
@@ -56,6 +64,7 @@ export {
   findSpawnsWithCapacity,
   findContainersWithCapacity,
   findContainersWithEnergy,
+  findExtensionsWithCapacity,
   findRepairableStructures,
   forEachCreep,
   getMainSpawn,
