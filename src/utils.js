@@ -30,14 +30,20 @@ function findExtensionsWithCapacity (room) {
   });
 }
 
-function findRepairableStructures (room) {
-  const targets = room.find(FIND_STRUCTURES, {
+// function findRepairableStructures (room) {
+//   const targets = room.find(FIND_STRUCTURES, {
+//     filter: object => object.hits < object.hitsMax
+//   });
+//
+//   targets.sort((a, b) => a.hits - b.hits);
+//
+//   return targets;
+// }
+
+function findClosestRepairable (pos) {
+  return pos.findClosestByPath(FIND_STRUCTURES, {
     filter: object => object.hits < object.hitsMax
   });
-
-  targets.sort((a, b) => a.hits - b.hits);
-
-  return targets;
 }
 
 function forEachCreep (fn) {
@@ -62,10 +68,11 @@ function guid () {
 
 export {
   findSpawnsWithCapacity,
+  findClosestRepairable,
   findContainersWithCapacity,
   findContainersWithEnergy,
   findExtensionsWithCapacity,
-  findRepairableStructures,
+  // findRepairableStructures,
   forEachCreep,
   getMainSpawn,
   guid

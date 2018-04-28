@@ -17,16 +17,17 @@ let loop = (function () {
 
     forEachCreep(function (creep) {
       creep.memory.roles.some(function (role) {
-        // console.log('Performing role: ', role);
-
-        // Will break if the role returned true
-        let Klass = roleMap[role].default;
-        let roleInstance = new Klass(creep);
-        return roleInstance.run();
+        // Handles both cases of exporting a function or a class
+        if (roleMap[role].run !== undefined) {
+          return roleMap[role].run(creep);
+        } else {
+          let Klass = roleMap[role].default;
+          let roleInstance = new Klass(creep);
+          return roleInstance.run();
+        }
       });
     });
   };
 })();
 
-// module.exports.loop = main();
 export { loop };

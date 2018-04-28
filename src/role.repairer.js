@@ -1,14 +1,14 @@
 import Creep from './Creep.js';
-import { findRepairableStructures } from './utils';
+import { findClosestRepairable } from './utils';
 
 function run (creep) {
-  let targets = findRepairableStructures(creep.room);
+  let target = findClosestRepairable(creep.pos);
 
-  if (targets.length > 0) {
+  if (target) {
     setMemory(creep);
 
     if (creep.memory.repairing) {
-      Creep.repair(creep, targets[0]);
+      Creep.repair(creep, target);
       return true;
     }
   }
