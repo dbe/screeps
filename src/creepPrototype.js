@@ -5,11 +5,15 @@ class CreepPrototype {
     this.species = species;
     this.body = body;
     this.roles = roles;
+
+    this.roleMemory = {};
+    roles.forEach((role) => { this.roleMemory[role] = {}; });
   }
 
   spawn () {
     let memory = {
       roles: this.roles,
+      roleMemory: this.roleMemory,
       species: this.species
     };
 
