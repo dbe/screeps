@@ -1,9 +1,9 @@
 import Creep from './Creep.js';
-import { findEnergyOnGround, findContainersWithEnergy } from './utils';
+import { findResourcesyOnGround, findContainersWithEnergy } from './utils';
 
 function run (creep) {
   if (creep.carry.energy < creep.carryCapacity) {
-    let target = creep.pos.findClosestByPath(findEnergyOnGround(creep.room, creep.carryCapacity));
+    let target = creep.pos.findClosestByPath(findResourcesyOnGround(creep.room, creep.carryCapacity));
     if (target) {
       Creep.pickup(creep, target);
 

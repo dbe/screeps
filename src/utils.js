@@ -22,10 +22,10 @@ function findContainersWithEnergy (room, amount) {
   });
 }
 
-function findEnergyOnGround (room, amount) {
-  return room.find(FIND_DROPPED_ENERGY, {
-    filter: (energy) => {
-      return (amount === undefined) || (energy.amount >= amount);
+function findResourcesyOnGround (room, amount, type) {
+  return room.find(FIND_DROPPED_RESOURCES, {
+    filter: (resource) => {
+      return (amount === undefined || resource.amount >= amount) && (type === undefined || resource.resourceType === type);
     }
   });
 }
@@ -76,7 +76,7 @@ function guid () {
 
 export {
   findSpawnsWithCapacity,
-  findEnergyOnGround,
+  findResourcesyOnGround,
   findClosestRepairable,
   findContainersWithCapacity,
   findContainersWithEnergy,

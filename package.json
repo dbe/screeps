@@ -19,7 +19,7 @@
       "CARRY",
       "MOVE",
       "FIND_CONSTRUCTION_SITES",
-      "FIND_DROPPED_ENERGY",
+      "FIND_DROPPED_RESOURCES",
       "FIND_SOURCES",
       "FIND_STRUCTURES",
       "ERR_NOT_IN_RANGE",
