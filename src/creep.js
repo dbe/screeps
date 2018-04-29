@@ -13,6 +13,12 @@ class Creep {
     }
   }
 
+  static pickup (creep, target) {
+    if (creep.pickup(target) === ERR_NOT_IN_RANGE) {
+      creep.moveTo(target, {visualizePathStyle: {stroke: '#ffffff'}});
+    }
+  }
+
   static repair (creep, target) {
     if (creep.repair(target) === ERR_NOT_IN_RANGE) {
       creep.moveTo(target);
