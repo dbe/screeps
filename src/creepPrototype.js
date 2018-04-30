@@ -31,8 +31,20 @@ class CreepPrototype {
     getMainSpawn().spawnCreep(this.body, `${this.species}_${guid()}`, {memory: memory});
   }
 
-  // TODO: Make this take into account the species and amount of available energy in the room
+  // TODO: This method has a ton of potential for optimization. Ordering of body parts is also important
   static determineBody (species) {
+    const availableEnergy = getMainSpawn().room.energyCapacityAvailable;
+    let body = [];
+
+    switch (species) {
+      case SN.STATIC_HARVESTER:
+        if (availableEnergy <= 300) {
+
+        }
+        break;
+      default:
+    }
+
     return [WORK, WORK, CARRY, MOVE];
   }
 }

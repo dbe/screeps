@@ -13,6 +13,7 @@
   "semistandard": {
     "globals": [
       "_",
+      "BODYPART_COST",
       "Game",
       "Room",
       "WORK",
@@ -30,7 +31,8 @@
     ]
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js"
+    "build": "webpack --config webpack.config.js",
+    "simulate": "node scripts/bodySimulator.js"
   },
   "devDependencies": {
     "webpack-cli": "^2.0.15"
