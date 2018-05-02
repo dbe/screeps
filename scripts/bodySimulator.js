@@ -1,7 +1,8 @@
 const CAPACITY_PER_CARRY = 50;
 const SPENT_PER_WORK = 1;
 const MOVEMENT_COST = 1;
-const DISTANCE = 100;
+const DISTANCE = 25;
+const ENERGY_CAP = 550;
 
 const BODY_COST_MAP = {
   'carry': 50,
@@ -23,8 +24,8 @@ class Creep {
     this.body[bodyPart] += count;
   }
 
-  canAdd (bodyPart, count, energyCap) {
-    return this.bodyCost() + (BODY_COST_MAP[bodyPart] * count) <= energyCap;
+  canAdd (bodyPart, count, ENERGY_CAP) {
+    return this.bodyCost() + (BODY_COST_MAP[bodyPart] * count) <= ENERGY_CAP;
   }
 
   bodyCost () {
@@ -70,25 +71,24 @@ class Creep {
   }
 }
 
-let energyCap = 300;
-let maxCarryParts = Math.floor(energyCap / BODY_COST_MAP['carry']);
-let maxMoveParts = Math.floor(energyCap / BODY_COST_MAP['move']);
-let maxWorkParts = Math.floor(energyCap / BODY_COST_MAP['work']);
+let maxCarryParts = Math.floor(ENERGY_CAP / BODY_COST_MAP['carry']);
+let maxMoveParts = Math.floor(ENERGY_CAP / BODY_COST_MAP['move']);
+let maxWorkParts = Math.floor(ENERGY_CAP / BODY_COST_MAP['work']);
 let costList = [];
 
 for (let carry = 0; carry <= maxCarryParts; carry++) {
   for (let move = 0; move <= maxMoveParts; move++) {
     for (var work = 0; work <= maxWorkParts; work++) {
       let creep = new Creep();
-      if (creep.canAdd('carry', carry, energyCap)) {
+      if (creep.canAdd('carry', carry, ENERGY_CAP)) {
         creep.add('carry', carry);
       }
 
-      if (creep.canAdd('move', move, energyCap)) {
+      if (creep.canAdd('move', move, ENERGY_CAP)) {
         creep.add('move', move);
       }
 
-      if (creep.canAdd('work', work, energyCap)) {
+      if (creep.canAdd('work', work, ENERGY_CAP)) {
         creep.add('work', work);
       }
 
@@ -107,7 +107,7 @@ for (let carry = 0; carry <= maxCarryParts; carry++) {
 }
 
 costList = costList.filter(function (e) {
-  return !isNaN(e[0]) && (e[0] !== Infinity);
+  return !isNaN(e[0]) && (e[0] !== Infinity) && (e[0] > 0);
 });
 
 costList = costList.sort(function (a, b) {
