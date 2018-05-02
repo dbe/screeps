@@ -2,7 +2,7 @@ const CAPACITY_PER_CARRY = 50;
 const SPENT_PER_WORK = 1;
 const MOVEMENT_COST = 1;
 const DISTANCE = 25;
-const ENERGY_CAP = 550;
+const ENERGY_CAP = 500;
 
 const BODY_COST_MAP = {
   'carry': 50,

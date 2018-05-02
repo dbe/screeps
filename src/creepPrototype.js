@@ -32,6 +32,9 @@ class CreepPrototype {
   }
 
   // TODO: This method has a ton of potential for optimization. Ordering of body parts is also important
+  // For now, the "else" just handles 550 energy (5 extenders)
+  // scripts/bodySimulator.js holds code to figure out the optimal layout given a workflow
+  // In the 550 energy part of the default case, only 500 energy is used because the last carry would make things slower (according to the simulator)
   static determineBody (species) {
     const availableEnergy = getMainSpawn().room.energyCapacityAvailable;
     let body = [];
@@ -39,13 +42,20 @@ class CreepPrototype {
     switch (species) {
       case SN.STATIC_HARVESTER:
         if (availableEnergy <= 300) {
-
+          body = [MOVE, MOVE, WORK, WORK];
+        } else {
+          body = [MOVE, WORK, WORK, WORK, WORK, WORK];
         }
         break;
       default:
+        if (availableEnergy <= 300) {
+          body = [CARRY, CARRY, CARRY, MOVE, WORK];
+        } else {
+          body = [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, WORK];
+        }
     }
 
-    return [WORK, WORK, CARRY, MOVE];
+    return body;
   }
 }
 
