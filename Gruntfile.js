@@ -1,5 +1,5 @@
 const PRIVATE_SERVER_OPTIONS = {
-  host: '10.0.1.16',
+  host: '10.0.1.6',
   port: 21025,
   http: true
 };
