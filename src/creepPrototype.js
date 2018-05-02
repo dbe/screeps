@@ -36,22 +36,32 @@ class CreepPrototype {
   // scripts/bodySimulator.js holds code to figure out the optimal layout given a workflow
   // In the 550 energy part of the default case, only 500 energy is used because the last carry would make things slower (according to the simulator)
   static determineBody (species) {
-    const availableEnergy = getMainSpawn().room.energyCapacityAvailable;
+    const mainSpawn = getMainSpawn();
+    const energyCapacity = mainSpawn.room.energyCapacityAvailable;
+    const energyAvailable = mainSpawn.room.energyAvailable;
     let body = [];
 
     switch (species) {
+      // Use energy available here to ensure ability to re-bootstrap if we have extensions half filled, but no suppliers alive
+      case SN.SUPPLIER:
+        if (energyAvailable < 550) {
+          body = [CARRY, MOVE, WORK, WORK];
+        } else {
+          body = [CARRY, CARRY, CARRY, MOVE, MOVE, WORK, WORK, WORK];
+        }
+        break;
       case SN.STATIC_HARVESTER:
-        if (availableEnergy <= 300) {
+        if (energyCapacity < 550) {
           body = [MOVE, MOVE, WORK, WORK];
         } else {
           body = [MOVE, WORK, WORK, WORK, WORK, WORK];
         }
         break;
       default:
-        if (availableEnergy <= 300) {
-          body = [CARRY, CARRY, CARRY, MOVE, WORK];
+        if (energyCapacity < 550) {
+          body = [CARRY, MOVE, WORK, WORK];
         } else {
-          body = [CARRY, CARRY, CARRY, CARRY, MOVE, MOVE, WORK];
+          body = [CARRY, CARRY, CARRY, MOVE, MOVE, WORK, WORK, WORK];
         }
     }
 

@@ -8,19 +8,25 @@ const BUILD_ORDER = [
   SN.STATIC_HARVESTER,
   SN.BUILDER,
   SN.UPGRADER,
-  SN.REPAIRER
+  SN.REPAIRER,
+  SN.STATIC_HARVESTER
 ];
 
 class Factory {
   static spawnNextCreep () {
     let current = getCurrentCreeps();
-    BUILD_ORDER.some((species) => {
+    let didBuild = BUILD_ORDER.some((species) => {
       if (current.dec(species) < 0) {
         let proto = new CreepPrototype(species);
         proto.spawn();
         return true;
       }
     });
+
+    // TODO: This should probably check how much available energy is in the room
+    if (!didBuild && (Game.creeps.length < 10)) {
+      new CreepPrototype(SN.BUILDER).spawn();
+    }
   }
 }
 
